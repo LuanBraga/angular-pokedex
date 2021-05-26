@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  pokemonList = [
+    {name:'Bulbasaur', number: 1},
+    {name:'Charmander', number: 2},
+    {name:'Squirtle', number: 3},
+    {name:'Pikachu', number: 4}
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
