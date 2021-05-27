@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  constructor() { }
+
   pokemonList = [
     {name:'bulbasaur', number: 1},
     {name:'charmander', number: 2},
@@ -14,9 +16,18 @@ export class ListComponent implements OnInit {
     {name:'pikachu', number: 4}
   ]
 
-  constructor() { }
+  selectedPkm = { name: ''};
+
+  get pkmSprite(){
+    const name = this.selectedPkm.name;
+    return `//img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`;
+  }
 
   ngOnInit(): void {
+  }
+
+  selectPokemon(pkm){
+    this.selectedPkm = pkm;
   }
 
 }
