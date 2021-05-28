@@ -8,8 +8,6 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 })
 export class ListComponent implements OnInit {
 
-  //commit do kgaço
-
   constructor(
     private pokeapi: PokeapiService
   ) { }
@@ -30,6 +28,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pokeapi.listAll();
   }
 
   selectPokemon(pkm){
