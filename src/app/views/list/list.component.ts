@@ -8,6 +8,8 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 })
 export class ListComponent implements OnInit {
 
+  //commit do kgaço
+
   constructor(
     private pokeapi: PokeapiService
   ) { }
