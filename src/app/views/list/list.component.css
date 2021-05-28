@@ -42,6 +42,7 @@
 }
 
 .poke-list-item img{
+    width: 25px;
     margin-right: 10px;
     vertical-align: middle;
 }
