@@ -8,13 +8,35 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 })
 export class ListComponent implements OnInit {
 
+  ngOnInit(): void {
+
+    //realiza a requisição http get através da PokeApiService quando o componente é inicializado
+    this.pokeapi.listAll();
+  }
+
   constructor(
-    //enjeta o pokeapiService
+    //injeta o pokeapiService
     private pokeapi: PokeapiService
   ) { }
 
   //equivale ao input poke-filter
   nameFilter = '';
+
+  //inicia com o valor nome vazio
+  selectedPkm = { name: ''};
+
+  selectPokemon(pkm){
+    //alimenta o objeto SelectedPkm com o nome do pokemon atual selecionado na lista do template
+    this.selectedPkm = pkm;
+  }
+  
+  //fornece o sprite de cada pokemon da lista do template
+  get pkmSprite(){
+    const name = this.selectedPkm.name;
+
+    //define a url fonte de cada pokemon a partir do nome passado para o objeto selectedPkm
+    return `//img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`;
+  }
 
   //alimenta a lista do template
   get pokemonList() {
@@ -22,20 +44,4 @@ export class ListComponent implements OnInit {
       return pokemon.name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) !== -1;
     })
   } 
-
-  selectedPkm = { name: ''};
-
-  get pkmSprite(){
-    const name = this.selectedPkm.name;
-    return `//img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`;
-  }
-
-  ngOnInit(): void {
-    this.pokeapi.listAll();
-  }
-
-  selectPokemon(pkm){
-    this.selectedPkm = pkm;
-  }
-
 }

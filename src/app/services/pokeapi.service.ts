@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+//interface para a resposta da requisição
 interface pokeListResponse{
   created: string;
   modified: string;
@@ -13,25 +14,19 @@ interface pokeListResponse{
   providedIn: 'root'
 })
 export class PokeapiService {
-  // private url = '//dev.treinaweb.com.br/pokeapi/';
 
+  //url da api que fornece a lista de nome dos pokemons
   private url = '//dev.treinaweb.com.br/pokeapi/';
 
-  
-
   constructor(
+    //injeta o httpClient de httpClientModule
     private http: HttpClient
   ) { }
 
-  /* pokeList = [
-    {name:'bulbasaur', number: 1},
-    {name:'charmander', number: 2},
-    {name:'squirtle', number: 3},
-    {name:'pikachu', number: 4}
-  ]
- */
+  //array de objetos para receber a lista de pokemons
   pokeList = [{name:'', number: 0}]
 
+  //metodo responsável pela requisição http get
   listAll(){
     this.http.get<pokeListResponse>(`${this.url}pokedex/1`).subscribe(
       response => {
@@ -41,6 +36,8 @@ export class PokeapiService {
         });
 
         this.pokeList = this.sortPokemon(response.pokemon).filter(pokemon => pokemon.number < 650)
+
+        console.log(this.pokeList);
       }
     )
   }
