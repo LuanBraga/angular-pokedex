@@ -9,11 +9,14 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 export class ListComponent implements OnInit {
 
   constructor(
+    //enjeta o pokeapiService
     private pokeapi: PokeapiService
   ) { }
 
+  //equivale ao input poke-filter
   nameFilter = '';
 
+  //alimenta a lista do template
   get pokemonList() {
     return this.pokeapi.pokeList.filter(pokemon => {
       return pokemon.name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) !== -1;
